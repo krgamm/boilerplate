@@ -1,0 +1,34 @@
+<div class="accordion content-block">
+
+  {% if Module.FieldValues.Title %}
+    <header class="section-header">
+      <h2 class="section-header__title">
+        {{ Module.FieldValues.Title }}
+      </h2>
+    </header>
+  {% endif %}
+
+  {% assign sorted = List.Items %}
+  {% for Item in sorted %}
+    <div class="accordion__item">
+      <div
+        class="accordion__title"
+        data-accordion-trigger="accordion-{{ Item.MatrixEntityItemId }}"
+      >
+        {{ Item.FieldValues.Title }}
+        <div class="accordion__icon">
+          <img src="{{ CDNURL }}/sitefiles/{{ Site.SiteId }}/images/icons/x.svg" alt="Close"/>
+        </div>
+      </div>
+      <div
+        class="accordion__panel"
+        data-accordion-panel="accordion-{{ Item.MatrixEntityItemId }}"
+      >
+        <div class="accordion__panel-inner">
+          {{ Item.FieldValues.Content }}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+  
+</div>

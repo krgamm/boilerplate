@@ -1,0 +1,22 @@
+<header class="header">
+    <div class="flex-container between-xs middle-xs">    
+        <div class="header__logo">
+            <a class="header__logo-link" href="/" title="Home page">
+                <img class="header__logo-image" src="{{ CDNURL }}/sitefiles/{{ Site.SiteId }}/images/elements-logo.svg" alt="Elements logo">
+            </a>
+        </div>
+        <nav class="primary-nav">
+            {% MainPagesMenu %}
+        </nav>
+        <button class="search-trigger" type="button" aria-label="Toggle Search">
+            <img src="{{ CDNURL }}/sitefiles/{{ Site.SiteId }}/images/icons/search.svg" alt="search"/>
+        </button>
+        <button class="hamburger" type="button" aria-label="Toggle Menu">
+            <div class="hamburger__inner">
+                <span class="hamburger__line hamburger__line--top"></span>
+                <span class="hamburger__line hamburger__line--middle"></span>
+                <span class="hamburger__line hamburger__line--bottom"></span>
+            </div>
+        </button>
+    </div>
+</header>

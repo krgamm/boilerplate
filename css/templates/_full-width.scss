@@ -1,0 +1,9 @@
+body.full-width {
+  .main {
+    padding: var(--gap-4) 0;
+
+    @include bp-lg {
+      padding: var(--gap-6) 0;
+    }
+  }
+}

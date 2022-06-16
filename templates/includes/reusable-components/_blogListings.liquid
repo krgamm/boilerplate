@@ -1,0 +1,98 @@
+<div class="blog-listings content-block">
+
+  {% if Tag != null %}
+    <header class="section-header">
+      <h2>Category: {{ Tag.Label }}</h2>
+    </header>
+  {% endif %}
+
+  {% if Pagination.Page > 1 %}
+    <header class="section-header">
+      <h2>Page {{ Pagination.Page }} of {{ Pagination.TotalPages }}</h2>
+    </header>
+  {% endif %}
+
+  <div class="blog-cards">
+
+    {% for entry in Entries %}
+
+      <div class="blog-card">
+
+        <!-- Keep on one line (without spaces too), else it adds whitespace -->
+        {% capture blogLink -%}{% BlogLink blogEntryId:entry.BlogEntryId blogSlug:entry.Slug sitePageSlug:SitePage.Slug sitePageId:SitePage.SitePageId -%}{% endcapture -%}
+
+        <div class="blog-card__photo">
+          {% if entry.ImageFileKey != blank %}
+            <img src="{{ entry.ImageFileKey }}" alt="{{ entry.title }}">
+          {% else %}
+            <span class="blog-card__logo">
+              <svg>
+                <use xlink:href="#elements-logo"></use>
+              </svg>
+            </span>
+          {% endif %}
+        </div>
+
+        <div class="blog-card__details">
+
+          <div class="blog-card__header-and-excerpt">
+            <header class="blog-card__header">
+              <h4 class="blog-card__title">
+                <a href="{{ blogLink }}">{{ entry.Title }}</a>
+              </h4>
+              <div class="blog-card__date">{{ entry.DatePublished | DateFormat:"MMMM dd, yyyy" }}</div>
+              <div class="blog-card__tags tags">
+                {% BlogTagLinks blogEntryId:entry.BlogEntryId siteTags:SiteTags blogModuleTagElements:BlogModuleTagElements sitePageSlug:SitePage.Slug sitePageId:SitePage.SitePageId %}
+              </div>
+              <p class="blog-card__excerpt">{{ entry.Body | StripHtml | Truncate:210 }}</p>
+            </header>
+          </div>
+
+          <div class="blog-card__cta">
+            <a href="{{ blogLink }}" class="link">Read More</a>
+          </div>
+
+        </div>
+
+      </div>
+    {% endfor %}
+
+  </div>
+
+  {% if Pagination.HasPrevious or Pagination.HasNext %}
+    <nav class="posts-nav">
+
+      {% if Pagination.HasPrevious %}
+        <div class="posts-nav__item posts-nav__item--prev">
+          <a class="posts-nav__link" href="{% BlogLinkForPage filterTag:Tag.URLFriendlyName filterMonth:Filter.Month filterYear:Filter.Year sitePageSlug:SitePage.Slug sitePageId:SitePage.SitePageId page:Pagination.PreviousPage %}">
+            <span class="posts-nav__icon">
+              <svg>
+                <use xlink:href="#angle-left"></use>
+              </svg>
+            </span>
+            <span class="posts-nav__text">
+              Page {{ Pagination.PreviousPage }}
+            </span>
+          </a>
+        </div>
+      {% endif %}
+
+      {% if Pagination.HasNext %}
+        <div class="posts-nav__item posts-nav__item--next">
+          <a class="posts-nav__link" href="{% BlogLinkForPage filterTag:Tag.URLFriendlyName filterMonth:Filter.Month filterYear:Filter.Year sitePageSlug:SitePage.Slug sitePageId:SitePage.SitePageId page:Pagination.NextPage %}">
+            <span class="posts-nav__text">
+              Page {{ Pagination.NextPage }}
+            </span>
+            <span class="posts-nav__icon">
+              <svg>
+                <use xlink:href="#angle-right"></use>
+              </svg>
+            </span>
+          </a>
+        </div>
+      {% endif %}
+
+    </nav>
+  {% endif %}
+
+</div>

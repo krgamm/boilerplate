@@ -1,0 +1,69 @@
+<div class="recent-news content-block">
+
+  <header class="section-header">
+
+    <h2 class="section-header__title">
+      {% if Module.FieldValues.Title %}
+        {{ Module.FieldValues.Title }}
+      {% else %}
+        Recent News
+      {% endif %}
+    </h2>
+
+    <div class="section-header__cta">
+      <a href="{{ Module.FieldValues.BlogSource.SitePage.Slug }}" class="button">
+        All News
+      </a>
+    </div>
+
+  </header>
+
+  <div class="blog-cards">
+
+    {% assign Entries = Module.FieldValues.BlogSource.Entries %}
+    {% for entry in Entries %}
+
+      <div class="blog-card">
+
+        <!-- Keep on one line (without spaces too), else it adds whitespace -->
+        {% capture blogLink -%}{% BlogLink blogEntryId:entry.BlogEntryId blogSlug:entry.Slug sitePageSlug:SitePage.Slug sitePageId:SitePage.SitePageId -%}{% endcapture -%}
+
+        <div class="blog-card__photo">
+          {% if entry.ImageFileKey != blank %}
+            <img src="{{ entry.ImageFileKey }}" alt="{{ entry.title }}">
+          {% else %}
+            <img class="blog-card__logo" src="{{ CDNURL }}/sitefiles/{{ Site.SiteId }}/images/elements-logo.svg" alt="Elements logo">
+          {% endif %}
+        </div>
+
+        <div class="blog-card__details">
+
+          <div class="blog-card__header-and-excerpt">
+            
+            <header class="blog-card__header">
+              <h4 class="blog-card__title">
+                <a href="{{ blogLink }}">{{ entry.Title }}</a>
+              </h4>
+              <div class="blog-card__date">{{ entry.DatePublished | DateFormat:"MMMM dd, yyyy" }}</div>
+              <div class="blog-card__tags tags">
+                {% for tag in entry.SiteTags %}
+                  <a href="{{Module.FieldValues.Blog.SitePage.Slug}}/category/{{tag.URLFriendlyName}}">{{tag.Label}}</a>
+                {% endfor %}
+              </div>
+              <p class="blog-card__excerpt">{{ entry.Body | StripHtml | Truncate:210 }}</p>
+            </header>
+
+          </div>
+
+          <div class="blog-card__cta">
+            <a href="{{ blogLink }}" class="link">Read More</a>
+          </div>
+
+        </div>
+
+      </div>
+    {% endfor %}
+
+  </div>
+
+</div>

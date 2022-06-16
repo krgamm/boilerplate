@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+
+<h1 id="speakelements:starterfilesforsitewrenchwebsites">Speak Elements: Starter Files for Sitewrench Websites</h1>
+
+<hr />
+
+<h2 id="thefront-enddetails">The Front-end Details</h2>
+
+<h3 id="favicons">Favicons</h3>
+
+<ul>
+<li>Favicons can be created and added as documented here - https://medium.com/swlh/are-you-using-svg-favicons-yet-a-guide-for-modern-browsers-836a6aace3df</li>
+</ul>
+
+<h3 id="templatefiles">Template Files</h3>
+
+<ul>
+<li>Templates are written using Liquid syntax and include global components from the /templates/includes/global-components folder.</li>
+<li>By default templates include markup using flex-col classes (the 12-column responsive flex layout), but you may modify or replace with alternatives such as CSS grid as necessary.</li>
+</ul>
+
+<h3 id="partialfiles">Partial files</h3>
+
+<ul>
+<li>Liquid partials in /templates/includes are organized into global and reusable components. Template use global components, whereas reusable components are for matrices (this is for convention&#8217;s sake).</li>
+</ul>
+
+<h3 id="fonts">Fonts</h3>
+
+<ul>
+<li>The fonts in this starter kit are Google Fonts—Montserrat and Source Serif. They are imported in /templates/includes/global-components/_head.liquid and can be changed there. You&#8217;ll need to update /css/abtrasts/_variables.scss to the correct font families.</li>
+</ul>
+
+<h3 id="css">CSS</h3>
+
+<ul>
+<li>CSS should be minified and bundled, going from /css/master.scss to /css/master.css</li>
+<li>The site&#8217;s colors and other sitewide variables are defined in /css/abstracts/_variables.scss</li>
+<li>Initial font sizes are setup using clamp, but feel free to modify if static values are more appropriate. Here&#8217;s a good place to go to learn more - https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/ To get the preferred value, this is a super helpful tool - https://royalfig.github.io/fluid-typography-calculator/</li>
+</ul>
+
+<h3 id="js">JS</h3>
+
+<ul>
+<li>There are two main JS files that are loaded by default, global.js and dynamic.js
+
+<ul>
+<li>global.js imports sitewide modules and should be bundled and minified to /js/min/global-min.js</li>
+<li>dynamic.js uses conditional dynamic imports to only include scripts when necessary and therefore should NOT be bundled, but does look for minified versions or modules in the /js/min folder.</li>
+</ul></li>
+<li>Some third party resources may come from npm, so be sure to run &#8216;npm install&#8217; when first cloning a repo.</li>
+</ul>
+
+<h2 id="thebuildprocess">The Build Process</h2>
+
+<h3 id="gettingstarted">Getting Started</h3>
+
+<ul>
+<li>Use these files as a starting point; additions, subtractions, and modifications are expected. The goal is merely to provide a good framework with commonly used tools from the onset.</li>
+</ul>
+
+<h3 id="wanttoremoveacomponentorstartfromscratch">Want to Remove a Component, or Start From Scratch?</h3>
+
+<ul>
+<li>Remove (or comment out) anything you don&#8217;t want to include from /css/master.scss and /js/global.js and /js/dynamic.js</li>
+</ul>
+
+<h3 id="thirdpartyresources">Third Party Resources</h3>
+
+<ul>
+<li>Tiny Slider is included in the starter files because of its common use, but others may be added as required by the project.</li>
+</ul>
+
+</body>
+</html>
+

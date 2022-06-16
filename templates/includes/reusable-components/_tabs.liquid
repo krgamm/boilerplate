@@ -1,0 +1,38 @@
+<div class="tabs content-block">
+
+  {% if Module.FieldValues.Title %}
+    <header class="section-header">
+      <h2 class="section-header__title">
+        {{ Module.FieldValues.Title }}
+      </h2>
+    </header>
+  {% endif %}
+
+  <menu class="tabs__menu">
+    {% assign sorted = List.Items %}
+    {% for Item in sorted %}
+
+      <button
+        class="tabs__menu-button"
+        data-tab-trigger="tab-{{ Item.MatrixEntityItemId }}"
+        type="button"
+      >
+        {{ Item.FieldValues.Title }}
+      </button>
+
+    {% endfor %}
+  </menu>
+
+  {% assign sorted = List.Items %}
+  {% for Item in sorted %}
+    <div
+      class="tabs__panel"
+      data-tab-panel="tab-{{ Item.MatrixEntityItemId }}"
+    >
+      <div class="tabs__panel-inner">
+        {{ Item.FieldValues.Content }}
+      </div>
+    </div>
+  {% endfor %}
+
+</div>

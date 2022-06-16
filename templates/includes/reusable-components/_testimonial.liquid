@@ -1,0 +1,41 @@
+<div class="testimonial content-block">
+
+  {% if Module.FieldValues.Title %}
+    <header class="section-header">
+      <h2 class="section-header__title">
+        {{ Module.FieldValues.Title }}
+      </h2>
+    </header>
+  {% endif %}
+
+  <blockquote class="testimonial__blockquote">
+
+    <div class="testimonial__icon">
+      <img src="{{ CDNURL }}/sitefiles/{{ Site.SiteId }}/images/icons/quote.svg" alt="quotation mark"/>
+    </div>
+
+    <div class="testimonial__details">
+
+      <div class="testimonial__quote">
+        {{ Module.FieldValues.Quote }}
+      </div>
+
+      <footer class="testimonial__footer">
+
+        <div class="testimonial__name">
+          {{ Module.FieldValues.Name }}
+        </div>
+
+        {% if Module.FieldValues.Position %}
+          <div class="testimonial__position">
+            {{ Module.FieldValues.Position }}
+          </div>
+        {% endif %}
+
+      </footer>
+
+    </div>
+
+  </blockquote>
+
+</div>

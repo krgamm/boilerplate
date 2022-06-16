@@ -1,0 +1,49 @@
+/* General Page Structure */
+
+html,
+body {
+  max-width: 100%;
+  position: relative;
+}
+
+body.locked {
+  overflow: hidden;
+}
+
+.page-overlay {
+  background-color: var(--color-black);
+  height: 100vh;
+  opacity: 0;
+  position: fixed;
+  transition: opacity var(--transition-duration-f);
+  visibility: hidden;
+  width: 100vw;
+  z-index: 2222;
+
+  &--active {
+    opacity: 0.9;
+    visibility: visible;
+  }
+}
+
+.page-wrap {
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  min-height: 100vh;
+  position: relative;
+
+  /* Hide the svg sprite */
+  > svg {
+    display: none;
+  }
+}
+
+.content-block {
+  margin-bottom: var(--gap-6);
+
+  @include bp-lg {
+    margin-bottom: var(--gap-8);
+  }
+}

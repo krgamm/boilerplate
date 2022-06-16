@@ -1,0 +1,59 @@
+<div class="grid content-block">
+
+  {% if Module.FieldValues.Title %}
+    <header class="section-header">
+      <h2 class="section-header__title">
+        {{ Module.FieldValues.Title }}
+      </h2>
+    </header>
+  {% endif %}
+
+  {% if List.Items %}
+    <div class="grid__wrap">
+      {% for Item in List.Items %}
+        <div class="grid__item">
+
+          {% if Item.FieldValues.Photo.Src %}
+            <div class="grid__photo">
+              <img
+                alt="{{ Item.FieldValues.Photo.Alt }}"
+                src="{{ Item.FieldValues.Photo.Src }}"
+              >
+            </div>
+          {% endif %}
+
+          <div class="grid__details">
+
+            <h3 class="grid__title">
+              {{ Item.FieldValues.Title }}
+            </h3>
+
+            {% if Item.FieldValues.Content %}
+              <p class="grid__content">
+                {{ Item.FieldValues.Content }}
+              </p>
+            {% endif %}
+
+            {% if Item.FieldValues.Link %}
+              <div class="grid__cta">
+                <a
+                  class="link"
+                  href="{{ Item.FieldValues.Link }}"
+                >
+                  {% if Item.FieldValues.LinkText %}
+                    {{ Item.FieldValues.LinkText }}
+                  {% else %}
+                    Learn More
+                  {% endif %}
+                </a>
+              </div>
+            {% endif %}
+
+          </div>
+
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+</div>

@@ -1,0 +1,1 @@
+SiteWrench excpects a CSS folder at the root directory of the repo and uses stylesheets found there for use in admin areas.

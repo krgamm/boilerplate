@@ -1,0 +1,1 @@
+const components=["accordion","announcement","location-finder","slider","tabs"];components.forEach((o=>{document.querySelectorAll(`.${o}`).length&&import(`./${o}-min.js`)}));const templates=["home","default","full-width"];templates.forEach((o=>{document.querySelector("body").classList.contains(`${o}`)&&import(`./${o}-min.js`)}));

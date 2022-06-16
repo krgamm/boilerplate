@@ -1,0 +1,67 @@
+<div class="blog-detail">
+
+  <header class="blog-detail__header">
+
+    <h2 class="blog-detail__title">
+      {{ Entry.Title }}
+    </h2>
+
+    <div class="blog-detail__date">
+      {% if BlogModule.DateFormat > 0 %}
+        {{ Entry.DatePublished | BlogPublishDateFormat: BlogModule.DateFormat }}
+      {% else %}
+        {{ Entry.DatePublished | DateFormat:"MMMM dd, yyyy" }}
+      {% endif %}
+    </div>
+
+    <ul class="blog-detail__tags">
+      {% for tag in Tags %}
+        <li class="blog-detail__tag"><a href="/{{ SitePage.Slug }}/category/{{ tag.URLFriendlyName }}">{{ tag.Label }}</a></li>
+      {% endfor %}
+    </ul>
+
+  </header>
+
+  {% if Entry.DetailsImageFileKey != "" %}
+    <div class="blog-detail__photo">
+      <img src="{{ Entry.DetailsImageFileKey }}" alt="{{ Entry.Title }}">
+    </div>
+  {% endif %}
+
+  <div class="blog-detail__body">
+    <div class="flex-container">
+      <div class="flex-row around-xs">
+        <div class="flex-col-xs-12 flex-col-sm-11 flex-col-md-10 flex-col-lg-9 flex-col-xl-8">
+          {{ Entry.Body }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if PrevEntry != null or NextEntry != null %}
+    <nav class="posts-nav">
+
+      {% if PrevEntry != null %}
+        <div class="posts-nav__item posts-nav__item--prev">
+          <a class="posts-nav__link" href="{% BlogLink blogEntryId:PrevEntry.BlogEntryId blogSlug:PrevEntry.Slug sitePageSlug:SitePage.Slug sitePageId:SitePage.SitePageId notXml:true %}">
+            <span class="posts-nav__text">
+              Previous
+            </span>
+          </a>
+        </div>
+      {% endif %}
+
+      {% if NextEntry != null %}
+        <div class="posts-nav__item posts-nav__item--next">
+          <a class="posts-nav__link" href="{% BlogLink blogEntryId:NextEntry.BlogEntryId blogSlug:NextEntry.Slug sitePageSlug:SitePage.Slug sitePageId:SitePage.SitePageId notXml:true %}">
+            <span class="posts-nav__text">
+              Next
+            </span>
+          </a>
+        </div>
+      {% endif %}
+
+    </nav>
+  {% endif %}
+
+</div>

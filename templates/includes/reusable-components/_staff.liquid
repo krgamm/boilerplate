@@ -1,0 +1,58 @@
+<div class="staff content-block">
+
+  {% if Module.FieldValues.Title %}
+    <header class="section-header">
+      <h2 class="section-header__title">
+        {{ Module.FieldValues.Title }}
+      </h2>
+    </header>
+  {% endif %}
+
+  <div class="staff__wrap">
+    {% assign sorted = List.Items %}
+    {% for Item in sorted %}
+
+      <div class="staff__card">
+
+        <div class="staff__photo">
+          <img
+            alt="{{ Item.FieldValues.Photo.Alt }}"
+            src="{{ Item.FieldValues.Photo.Src }}?w=400&h=400"
+          >
+        </div>
+
+        <div class="staff__details">
+
+          <h3 class="staff__name">
+            {{ Item.FieldValues.Name }}
+          </h3>
+
+          {% if Item.FieldValues.Position %}
+            <p class="staff__position">
+              {{ Item.FieldValues.Position }}
+            </p>
+          {% endif %}
+
+          
+          <div class="staff__contact">
+            {% if Item.FieldValues.Email %}  
+              <a class="staff__contact-link" href="mailto:{{ Item.FieldValues.Email }}" title="Email {{Item.FieldValues.Name}}">
+                <img src="{{ CDNURL }}/sitefiles/{{ Site.SiteId }}/images/icons/envelope.svg" alt="envelope"/>
+              </a>
+            {% endif %}
+            
+            {% if Item.FieldValues.Phone %}  
+              <a class="staff__contact-link" href="tel:{{ Item.FieldValues.Phone }}" title="Call {{Item.FieldValues.Name}}">
+                <img src="{{ CDNURL }}/sitefiles/{{ Site.SiteId }}/images/icons/phone.svg" alt="phone"/>
+              </a>
+            {% endif %}
+          </div>
+        
+        </div>
+
+      </div>
+
+    {% endfor %}
+  </div>
+
+</div>

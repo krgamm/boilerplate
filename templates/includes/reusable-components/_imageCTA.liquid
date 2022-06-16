@@ -1,0 +1,41 @@
+<div class="image-cta content-block
+  {% if Module.FieldValues.PhotoOnLeft %}
+    image-cta-block--photo-on-left
+  {% endif %}
+">
+
+  <div class="image-cta__wrap">
+
+    {% if Module.FieldValues.Photo %}
+      <div class="image-cta__photo">
+        <img src="{{ Module.FieldValues.Photo.Src }}" alt="{{ Module.FieldValues.Photo.Alt }}">
+      </div>
+    {% endif %}
+
+    <div class="image-cta__text">
+      <h2 class="image-cta__title">
+        {{ Module.FieldValues.Title }}
+      </h2>
+
+      <div class="image-cta__details">
+        {% if Module.FieldValues.Content %}
+          {{ Module.FieldValues.Content }}
+        {% endif %}
+
+        {% if Module.FieldValues.Link %}
+          <div class="image-cta__cta">
+            <a href="{{ Module.FieldValues.Link }}" class="button button--primary">
+              {% if Module.FieldValues.LinkText %}
+                {{ Module.FieldValues.LinkText }}
+              {% else %}
+                Learn More
+              {% endif %}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+
+</div>

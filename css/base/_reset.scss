@@ -1,0 +1,72 @@
+/* Reset Stuff */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Baseline size to make rem sizing easier */
+
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  font-size: 62.5%;
+}
+
+/* Border Box for all */
+
+html {
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+
+  &::before,
+  &::after {
+    box-sizing: inherit;
+  }
+}
+
+/* Improved font rendering */
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Highlighted Text */
+
+::selection {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* Base Display Settings */
+
+article, aside, audio, canvas, details, figcaption, figure, footer, header, hgroup, img, main, nav, progress, section, summary, video {
+  display: block;
+}
+
+/* Embeds */
+
+object,
+embed {
+  height: 100%;
+}
+
+/* Base Image Styles */
+
+img {
+  height: auto;
+  -ms-interpolation-mode: bicubic;
+  max-width: 100%;
+}
+
+/* Buttons */
+
+button {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}

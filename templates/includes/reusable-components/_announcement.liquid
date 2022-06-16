@@ -1,0 +1,16 @@
+{% if Module.FieldValues.Published %}
+  <div class="announcement">
+
+    <div class="announcement__content flex-container">
+      {{ Module.FieldValues.Announcement }}
+    </div>
+
+    <button
+      aria-label="Close Announcement"
+      class="announcement__close"
+      type="button"
+    >
+    </button>
+
+  </div>
+{% endif %}

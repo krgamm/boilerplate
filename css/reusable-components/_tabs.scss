@@ -1,0 +1,84 @@
+.tabs {
+  &__menu {
+    align-items: flex-end;
+    border-bottom: var(--border-width-sm) solid var(--color-neutral);
+    display: flex;
+    margin: 0 0 var(--gap-3);
+    overflow-x: scroll;
+    padding: 0;
+    position: relative;
+  }
+
+  &__menu-button {
+    align-items: center;
+    color: var(--color-text);
+    cursor: pointer;
+    display: flex;
+    font-family: var(--font-secondary);
+    font-size: 1.6rem;
+    font-weight: 400;
+    justify-content: center;
+    margin: 0;
+    padding: 0 0 var(--gap-2);
+    position: relative;
+    transition: color var(--transition-duration-f);
+    white-space: nowrap;
+  
+    @include bp-md {
+      font-size: 1.8rem;
+    }
+  
+    &:not(:last-child) {
+      margin-right: var(--gap-2);
+  
+      @include bp-md {
+        margin-right: var(--gap-4);
+      }
+    }
+  
+    &:hover {
+      color: var(--color-primary);
+    }
+  
+    &--active {
+      color: var(--color-text);
+      cursor: text;
+      font-weight: 700;
+  
+      &::after {
+        background-color: var(--color-primary);
+        bottom: 0;
+        content: "";
+        height: var(--border-width-md);
+        left: 0;
+        position: absolute;
+        width: 100%;
+        z-index: 2;
+      }
+  
+      &:hover {
+        color: var(--color-text);
+      }
+    }
+  }
+  
+  &__panel {
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity var(--transition-duration-m) ease;
+
+    &--active {
+      height: auto;
+      opacity: 1;
+    }
+  }
+
+  &__panel-inner {  
+    > * {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

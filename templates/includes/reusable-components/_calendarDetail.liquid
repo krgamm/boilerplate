@@ -1,0 +1,111 @@
+<div class="calendar-detail">
+
+  <header class="section-header">
+    <h2 class="section-header__title">
+      {{ Event.Subject }}
+    </h2>
+
+    <div class="section-header__cta">
+      <a href="/{{ SitePage.Slug }}" class="button">
+        All Events
+      </a>
+    </div>
+  </header>
+
+  <div class="flex-row">
+
+    <div class="flex-col-xs-12 flex-col-sm-7">
+      {% if Event.RelatedImageFileKey != "" %}
+        <div class="calendar-detail__photo">
+          <img
+            alt="{{ Event.Subject }}"
+            class="CalendarEvent__featuredImage"
+            src="{{ Event.RelatedImageFileKey }}"
+          />
+        </div>
+      {% endif %}
+
+      {% if Event.Description %}
+        <div class="calendar-detail__description templatecontent">
+          {{ Event.Description }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="first-xs last-sm flex-col-xs-12 flex-col-sm-5 flex-col-md-offset-1 flex-col-md-4">
+      <div class="calendar-detail__meta meta">
+        <div class="meta__item">
+          <header class="meta__header">
+            <h3 class="meta__title">Date &amp; Time</h3>
+          </header>
+
+          <div class="meta__details">
+            {{ Event.DateTimeText }}
+            {% if Event.IsRecurring %}
+              <img src="https://www.speakcdn.com/sitefiles/global/images/svg/repeat.svg" alt="Recurring Event" />
+            {% endif %}
+            {% if Event.NextRecurringDateTimeText %}
+              Next upcoming:
+              {% assign next = Event.NextRecurringStartDateTime | DateFormat: "yyyy-MM-dd", event.TimeZone %}
+              <a href="./{{ Event.EventModuleId }}/date/{{ next }}">{{ Event.NextRecurringDateTimeText }}</a>
+            {% endif %}
+          </div>
+        </div>
+
+        {% if Event.FullAddress != '' %}
+          <div class="meta__item">
+            <header class="meta__header">
+              <h3 class="meta__title">Location</h3>
+              <a href="{{ Event.MapLink }}" rel="noreferrer noopener" target="_blank">
+                view map
+              </a>
+            </header>
+
+            <div class="meta__details">
+              {{ Event.FullAddress }}
+            </div>
+          </div>
+        {% endif %}
+
+        {% if Event.Tags.size > 0 %}
+          <div class="meta__item">
+            <header class="meta__header">
+              <h3 class="meta__title">Event Tags</h3>
+            </header>
+
+            <div class="meta__details">
+              <ul class="tags">
+                {% for tag in Event.Tags %}
+                  <li class="tag"><a href="{% CalendarFilteredTagLink tag:tag sitePage:SitePage settings:Settings %}">{{ tag.Name }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+
+        {% if Event.ContactName != ''  or Event.ContactPhone != '' or Event.ContactEmail != '' %}
+          <div class="meta__item">
+            <header class="meta__header">
+              <h3 class="meta__title">Contact Information</h3>
+            </header>
+
+            <div class="meta__details">
+              {% if Event.ContactName != ''  %}
+                <p>Name: {{ Event.ContactName }}</p>
+              {% endif %}
+              {% if Event.ContactPhone != ''  %}
+                <p>Phone: <a href="tel:{{ Event.ContactPhone }}">{{ Event.ContactPhone }}</a></p>
+              {% endif %}
+              {% if Event.ContactEmail != '' %}
+                <p>Email: <a href="mailto:{{ Event.ContactEmail }}">{{ Event.ContactEmail }}</a></p>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

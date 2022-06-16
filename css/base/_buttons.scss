@@ -1,0 +1,179 @@
+@mixin button-styles {
+  appearance: none;
+  background-color: var(--color-text);
+  border: var(--border-width-sm) solid var(--color-black);
+  border-radius: var(--border-radius);
+  color: var(--color-white);
+  cursor: pointer;
+  display: inline-block;
+  font-family: var(--font-secondary);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+  margin: 0;
+  padding: var(--gap-2) var(--gap-3);
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color var(--transition-duration-f),
+              border-color var(--transition-duration-f),
+              color var(--transition-duration-f);
+  white-space: nowrap;
+
+  & + & {
+    margin-left: var(--gap-3);
+  }
+
+  &:hover {
+    background-color: var(--color-black);
+  }
+
+  @include bp-md {
+    font-size: 1.8rem;
+  }
+}
+
+@mixin primary-button-styles {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary-dark);
+  color: var(--color-white);
+
+  &:hover {
+    background-color: var(--color-primary-dark);
+    color: var(--color-white);
+  }
+}
+
+@mixin ghost-button-styles {
+  background-color: transparent;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+
+  &:hover {
+    background-color: transparent;
+    border-color: var(--color-primary-dark);
+    color: var(--color-primary-dark);
+  }
+}
+
+a,
+button {
+  &.button {
+    @include button-styles;
+
+    &--primary {
+      @include primary-button-styles;
+    }
+
+    &--ghost {
+      @include ghost-button-styles;
+    }
+
+    &--small {
+      font-size: 1.3rem;
+
+      @include bp-md {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+/* Block Link */
+
+@mixin block-link-styles {
+  appearance: none;
+  cursor: pointer;
+  display: inline-block;
+  font-family: var(--font-secondary);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+  margin: 0;
+  padding: var(--gap-2) 0;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color var(--transition-duration-f),
+              border-color var(--transition-duration-f),
+              color var(--transition-duration-f);
+  white-space: nowrap;
+
+  & + & {
+    margin-left: var(--gap-3);
+  }
+
+  &::after {
+    background-color: currentColor;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 0.2rem;
+    left: 0;
+    position: absolute;
+    transition: width var(--transition-duration-f);
+    width: 0;
+  }
+
+  &:hover {
+    &::after {
+      width: 100%;
+    }
+  }
+
+  @include bp-md {
+    font-size: 1.8rem;
+  }
+}
+
+a,
+button {
+  &.link {
+    @include block-link-styles;
+  }
+}
+
+/* Buttons Group */
+
+.buttons-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-3) 0;
+  margin: 0;
+
+  margin-bottom: var(--gap-4);
+
+  @include bp-lg {
+    margin-bottom: var(--gap-6);
+  }
+
+  &--centered {
+    justify-content: center;
+  }
+
+  &--right {
+    justify-content: flex-end;
+  }
+
+  &--full-on-mobile {
+    > * {
+      width: 100%;
+
+      @include bp-md {
+        width: inherit;
+      }
+    }
+
+    .button {
+      width: 100%;
+
+      @include bp-md {
+        width: inherit;
+      }
+    }
+  }
+
+  .button {
+    margin: 0;
+  }
+}

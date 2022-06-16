@@ -1,0 +1,81 @@
+<div class="upcoming-events content-block">
+
+  <header class="section-header">
+
+    <h2 class="section-header__title">
+      {% if Module.FieldValues.Title %}
+        {{ Module.FieldValues.Title }}
+      {% else %}
+        Upcoming Events
+      {% endif %}
+    </h2>
+
+    <div class="section-header__cta">
+      <a href="{{ Module.FieldValues.CalendarSource.SitePage.Slug }}" class="button">
+        All Events
+      </a>
+    </div>
+
+  </header>
+
+  <div class="event-cards event-cards--three-cols">
+    {% assign Events = Module.FieldValues.CalendarSource.Events %}
+    {% for event in Events %}
+
+      <div class="event-card">
+
+        <div class="event-card__photo">
+          {% if event.RelatedImageFileKey != blank %}
+            <img src="{{ event.RelatedImageFileKey }}" alt="{{ event.Subject }}">
+          {% else %}
+            <img class="event-card__logo" src="{{ CDNURL }}/sitefiles/{{ Site.SiteId }}/images/elements-logo.svg" alt="Elements logo">
+          {% endif %}
+        </div>
+
+        <div class="event-card__content">
+          <div class="event-card__details">
+
+            <div class="event-card__date">
+              <span class="event-card__date--month">
+                {{ event.StartDateTime | DateFormat:"MMM",event.TimeZone }}
+              </span>
+              <span class="event-card__date--day">
+                {{ event.StartDateTime | DateFormat:"dd",event.TimeZone }}
+              </span>
+            </div>
+
+            <div class="event-card__info">
+
+              <header class="event-card__info__header">
+                <h4 class="event-card__title">
+                  <a href="{% CalendarEventLink event:event sitePage:Module.FieldValues.CalendarSource.SitePage %}">{{ event.Subject }}</a>
+                </h4>
+                <div class="event-card__date-text">{{ event.DateTimeText }}</div>
+                {% if event.SiteTags.size > 0 %}
+                  <div class="event-card__tags tags">
+                    {% for tag in event.SiteTags %}
+                      <a href="{% CalendarFilteredTagLink tag:tag sitePage:Module.FieldValues.CalendarSource.SitePage settings:Module.FieldValues.CalendarSource.Settings %}">{{tag.Label}}</a>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+                <p class="event-card__excerpt">{{ event.Description | StripHtml | Truncate:210 }}</p>
+              </header>
+
+              <div class="event-card__cta">
+                <a href="{% CalendarEventLink event:event sitePage:SitePage %}" class="link">
+                  Read More
+                </a>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    {% endfor %}
+
+  </div>
+
+</div>

@@ -1,0 +1,61 @@
+<div class="portals content-block">
+
+  {% if Module.FieldValues.Title %}
+    <header class="section-header">
+      <h2 class="section-header__title">
+        {{ Module.FieldValues.Title }}
+      </h2>
+    </header>
+  {% endif %}
+
+  <div class="portals__wrap">
+    {% assign sorted = List.Items %}
+    {% for Item in sorted %}
+
+      <div class="portals__card">
+
+        {% if Item.FieldValues.Link %}
+          <a
+            class="portals__card-inner"
+            href="{{ Item.FieldValues.Link }}"
+          >
+        {% endif %}
+
+          {% if Item.FieldValues.Photo %}
+            <div class="portals__photo">
+              <img src="{{ Item.FieldValues.Photo.Src }}?w=600" alt="{{ Item.FieldValues.Photo.Alt }}">
+            </div>
+          {% endif %}
+
+          <div class="portals__details">
+
+            <h3 class="portals__title">
+              {{ Item.FieldValues.Title }}
+            </h3>
+
+            <p class="portals__description">
+              {{ Item.FieldValues.Description }}
+            </p>
+
+            {% if Item.FieldValues.Link %}
+              <span class="portals__link">
+                {% if Item.FieldValues.LinkText %}
+                  {{ Item.FieldValues.LinkText }}
+                {% else %}
+                  Learn More
+                {% endif %}
+              </span>
+            {% endif %}
+
+          </div>
+
+        {% if Item.FieldValues.Link %}
+          </a>
+        {% endif %}
+
+      </div>
+
+    {% endfor %}
+  </div>
+
+</div>

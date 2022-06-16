@@ -1,0 +1,60 @@
+<div class="location-finder content-block">
+
+  <header class="section-header">
+    <h2>{{ Module.FieldValues.Title }}</h2>
+  </header>
+
+  <div class="location-finder__content">
+
+    <h3>Find a Location Near You</h3>
+
+    <div class="location-finder__search">
+      <input
+        class="location-finder__search-input"
+        placeholder="Search by location..."
+        type="text"
+      >
+      <div class="location-finder__search-icon">
+        <svg>
+          <use xlink:href="#search"></use>
+        </svg>
+      </div>
+    </div>
+
+    {% if List.Items %}
+      <div class="locations">
+        {% for Item in List.Items %}
+          <button
+            class="location"
+            data-location-address="{{ Item.FieldValues.Address }}"
+            data-location-latitude="{{ Item.FieldValues.Latitude }}"
+            data-location-longitude="{{ Item.FieldValues.Longitude }}"
+            data-location-marker=""
+            data-location-title="{{ Item.FieldValues.Title }}"
+            type="button"
+          >
+
+            <h3 class="location__title">
+              {{ Item.FieldValues.Title }}
+            </h3>
+
+            <div class="location__meta">
+              <div class="location__meta-item">
+                {{ Item.FieldValues.Address }}
+              </div>
+            </div>
+
+          </button>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+  </div>
+  
+  <div class="location-finder__map">
+    <div id="map"></div>
+  </div>
+    
+</div>
+
+<script src="//maps.googleapis.com/maps/api/js?key={{ Module.FieldValues.GoogleMapApiKey }}"></script>

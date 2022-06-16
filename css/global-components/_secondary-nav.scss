@@ -1,0 +1,103 @@
+.secondary-nav {
+  list-style: none;
+  
+  li {
+    margin: 0;
+    position: relative;
+
+    ul {
+      display: block;
+      margin: 0;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      transition: height var(--transition-duration-m) ease;
+      visibility: hidden;
+
+      &.active {
+        position: relative;
+        visibility: visible;
+      }
+    }
+  }
+
+  a {
+    color: var(--color-text);
+    display: block;
+    padding: var(--gap-1) 0;
+    position: relative;
+    text-decoration: none;
+    transition: color var(--transition-duration-f);
+
+    &:hover,
+    &.current {
+      color: var(--color-primary-dark);
+    }
+  }
+
+  // first level
+  > li {
+    &:not(:first-child) {
+      border-top: var(--border-width-sm) solid var(--color-neutral-light);
+    }
+
+    > a {
+      font-size: 1.8rem;
+      font-weight: 700;
+      padding: var(--gap-1) 0;
+    }
+
+    // second level
+    > ul {
+      > li {
+        > a {
+          font-size: 1.6rem;
+          padding: var(--gap-1) 0 var(--gap-1) var(--gap-2);
+        }
+
+        // third level
+        > ul {
+          > li {
+            a {
+              padding: var(--gap-1) 0 var(--gap-1) var(--gap-4);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Secondary Nav Expand Button
+
+.secondary-nav__expand {
+  cursor: pointer;
+  display: block;
+  height: var(--icon-size-md);
+  right: 0;
+  position: absolute;
+  top: 0.5rem;
+  transition: background-color var(--transition-duration-f);
+  width: var(--icon-size-md);
+
+  &::after {
+    background-image: url("../images/icons/angle-down.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: "";
+    height: var(--icon-size-sm);
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: top left;
+    width: var(--icon-size-sm);
+  }
+
+  &--active {
+    &::after {
+      transform: rotate(180deg) translate(-50%, -50%);
+    }
+  }
+}

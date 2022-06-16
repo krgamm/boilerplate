@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-us" class="no-js">
+
+<head>
+    <!-- HEAD -->
+    {% HeadContent %}
+	{% include "global-components/head" %}
+</head>
+
+<body class="home {% if SitePage %}{{ SitePage.Slug }}{% endif %}">
+    
+    <div class="page-overlay"></div>
+
+    <div class="page-wrap">
+
+        <!-- Announcement -->
+        {% PagePartContent "cphSiteAnnouncement" %}
+
+        <!-- Global Components -->
+        {% include "global-components/search" %}
+        {% include "global-components/sidecar" %}
+        {% include "global-components/utility" %}
+        {% include "global-components/header" %}
+
+        <section class="banner">
+            <div class="flex-container">
+                <div class="flex-row">
+                    <div class="flex-col-xs-12">
+                        {% PagePartContent "cphPageHero" %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="main">
+            <div class="flex-container">
+                <div class="flex-row">
+                    <main class="flex-col-xs-12">
+                        {% SystemPageContent %}
+                        {% PagePartContent "cphPageBody" %}
+                        {% SideContent %}
+                    </main>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        {% include "global-components/footer" %}
+
+    </div>
+
+    {% BodyEndContent %}
+
+</body>
+
+</html>

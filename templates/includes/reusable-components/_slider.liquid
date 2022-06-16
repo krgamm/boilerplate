@@ -1,0 +1,40 @@
+{% assign sorted = List.Items %}
+
+<div class="slider content-block">
+
+  {% if Module.FieldValues.Title %}
+    <header class="section-header">
+      <h2 class="section-header__title">
+        {{ Module.FieldValues.Title }}
+      </h2>
+    </header>
+  {% endif %}
+
+  <div class="slider__wrap">
+    {% for Item in sorted %}
+      <div class="slider__item">
+        <img
+          alt="{{ Item.FieldValues.Photo.Alt }}"
+          class="slider__photo"
+          src="{{ Item.FieldValues.Photo.Src }}"
+        >
+      </div>
+    {% endfor %}
+  </div>
+
+  <nav class="slider__nav">
+    {% for Item in sorted %}
+      <button
+        class="slider__nav-button"
+        type="button"
+      >
+        <img
+          alt="{{ Item.FieldValues.Photo.Alt }}"
+          class="slider__nav-photo"
+          src="{{ Item.FieldValues.Photo.Src }}?h=200&w=200"
+        >
+      </button>
+    {% endfor %}
+  </nav>
+
+</div>

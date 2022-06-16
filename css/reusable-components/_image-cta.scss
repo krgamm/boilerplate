@@ -1,0 +1,126 @@
+.image-cta {
+  &--photo-on-left {
+    .image-cta__wrap {
+      margin: var(--gap-8)
+              0
+              0
+              var(--gap-4);
+
+      @include bp-sm {
+        flex-direction: row;
+      }
+
+      @include bp-md {
+        margin: var(--gap-9)
+                0
+                0
+                var(--gap-6);
+      }
+    
+      @include bp-lg {
+        margin: calc(var(--gap-6) + var(--gap-8))
+                0
+                0
+                var(--gap-8);
+      }
+    }
+
+    .image-cta__photo {      
+      margin: calc(var(--gap-4) * -1)
+              var(--gap-4)
+              0
+              calc(var(--gap-4) * -1);
+
+      @include bp-md {
+        margin: calc(var(--gap-6) * -1)
+                var(--gap-6)
+                0
+                calc(var(--gap-6) * -1);
+      }
+  
+      @include bp-lg {
+        margin: calc(var(--gap-8) * -1)
+                var(--gap-8)
+                0
+                calc(var(--gap-8) * -1);
+      }
+    }
+  }
+}
+
+.image-cta {
+  &__wrap {
+    background-color: var(--color-neutral-light);
+    margin: var(--gap-8)
+            var(--gap-4)
+            0
+            0;
+    padding: 1px;
+    position: relative;
+
+    @include bp-sm {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+
+    @include bp-md {
+      margin: var(--gap-9)
+              var(--gap-6)
+              0
+              0;
+    }
+
+    @include bp-lg {
+      margin: calc(var(--gap-6) + var(--gap-8))
+              var(--gap-8)
+              0
+              0;
+    }
+  }
+    
+  &__photo {
+    margin: calc(var(--gap-4) * -1)
+            calc(var(--gap-4) * -1)
+            0
+            var(--gap-4);
+
+    @include bp-sm {
+      width: 50%;
+    }
+
+    @include bp-md {
+      margin: calc(var(--gap-6) * -1)
+              calc(var(--gap-6) * -1)
+              0
+              var(--gap-6);
+    }
+
+    @include bp-lg {
+      margin: calc(var(--gap-8) * -1)
+              calc(var(--gap-8) * -1)
+              0
+              var(--gap-8);
+    }
+  }
+
+  &__text {
+    padding: var(--gap-4);
+
+    @include bp-sm {
+      width: 50%;
+    }
+
+    @include bp-md {
+      padding: var(--gap-6);
+    }
+
+    @include bp-md {
+      padding: var(--gap-8);
+    }
+  }
+
+  &__cta {
+    margin-bottom: 0;
+  }
+}
+

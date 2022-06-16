@@ -1,0 +1,40 @@
+.slider-block {
+  .tns-horizontal.tns-subpixel > .tns-item {
+    vertical-align: baseline;
+  }
+}
+
+.slider {
+  &__photo {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: center;
+    margin: calc(var(--gap-1) * 2) auto 0;
+  }
+
+  &__nav-button {
+    flex: 0 0 10%;
+    max-width: 10%;
+    padding: 0 var(--gap-1);
+
+    &.tns-nav-active {
+      .slider__nav-photo {
+        border-color: var(--color-primary);
+      }
+    }
+  }
+    
+  &__nav-photo {    
+    aspect-ratio: 1 / 1;
+    border: var(--border-width-md) solid transparent;    
+    transition: border-color var(--transition-duration-f);
+
+    &:hover {
+      border-color: var(--color-primary);
+    }
+  }
+}
